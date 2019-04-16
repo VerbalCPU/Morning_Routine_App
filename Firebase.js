@@ -1,3 +1,5 @@
+import * as firebase from 'firebase';
+
 // Initialize Firebase
   var config = {
     apiKey: "AIzaSyCKabpUaJt5gHUdSDpfBcrOXJHcNNbWDzY",
@@ -7,4 +9,6 @@
     storageBucket: "test1-b05d1.appspot.com",
     messagingSenderId: "434492807568"
   };
-  firebase.initializeApp(config);
+
+const firebase_setup = firebase.initializeApp(config);
+export firebase;
