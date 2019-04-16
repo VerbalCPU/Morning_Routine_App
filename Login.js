@@ -1,15 +1,15 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
-import firebase from './Firebase'
 
 
-export default class Login extends React.Component {
+
+export default class Log_in extends React.Component {
 
   render(){
     return(
       <Container>
       <Form>
-      <Item>
+      <Item floatingLabel>
       <Label>Email</Label>
       <Input
       autoCorrect = {false}
@@ -21,7 +21,13 @@ export default class Login extends React.Component {
       </Container>
     )
   }
-
-
-
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }
+});

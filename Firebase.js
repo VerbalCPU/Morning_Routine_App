@@ -10,5 +10,10 @@ import * as firebase from 'firebase';
     messagingSenderId: "434492807568"
   };
 
-const firebase_setup = firebase.initializeApp(config);
-export firebase;
+
+export default class Firebase {
+
+  static init(){
+    firebase.initializeApp(config);
+  }
+}
