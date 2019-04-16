@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 import { Asset, Font } from 'expo';
-// import { Button } from './Login_Button'
+
 
 export default class App extends React.Component {
 
