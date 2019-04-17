@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput} from 'react-native';
 import { Asset, Font } from 'expo';
-import {Firebase} from './Firebase';
+import fire_setup from './Firebase';
 import {Container,Item,Form,Label,Input,Content,Header,Button} from "native-base";
 
 
@@ -14,6 +14,20 @@ export default class App extends React.Component {
       email: '',
       password : ''
     });
+  }
+
+  signupUser = (email,password) => {
+
+    try{
+      if(this.state.password.length < 6){
+        alert("Please enter at least 6 characters");
+        return;
+      }
+      fire_setup.auth().createUserWithEmailAndPassword(email,password);
+    }
+    catch(error){
+      console.log(error.toString());
+    }
   }
 
 
