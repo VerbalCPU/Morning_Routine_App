@@ -10,10 +10,4 @@ import * as firebase from 'firebase';
     messagingSenderId: "434492807568"
   };
 
-
-export default class Firebase {
-
-  static init(){
-    firebase.initializeApp(config);
-  }
-}
+export default fire_setup = firebase.initializeApp(config);
