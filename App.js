@@ -22,11 +22,26 @@ export default class App extends React.Component {
       if(this.state.password.length < 6){
         alert("Please enter at least 6 characters");
         return;
+      }else if (this.state.email.length == 0){
+        alert("Please insert an email")
       }
       fire_setup.auth().createUserWithEmailAndPassword(email,password);
     }
     catch(error){
-      console.log(error.toString());
+      alert(error);
+    }
+  }
+
+  loginUser = (email,password) => {
+
+    try{
+      fire_setup.auth().signInWithEmailAndPassword(email,password).then(function(user){
+        console.log(user);
+      });
+
+    }
+    catch(error){
+      console.log(error);
     }
   }
 
