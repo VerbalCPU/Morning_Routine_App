@@ -1,14 +1,20 @@
-import React from 'react';
+import React,{Component} from 'react';
 import { StyleSheet, Text, View, TextInput} from 'react-native';
 import { Asset, Font } from 'expo';
-import fire_setup from './Firebase';
 import {Container,Item,Form,Label,Input,Content,Header,Button} from "native-base";
+import {
+  StackNavigator,
+  TabNavigator,
+  SwitchNavigator
+} from "react-navigation";
 
+import Home from './Home';
+import fire_setup from './Firebase';
 
 export default class App extends React.Component {
 
   constructor(props){
-    super(props)
+    super(props);
 
     this.state = ({
       email: '',
@@ -25,7 +31,9 @@ export default class App extends React.Component {
       }else if (this.state.email.length == 0){
         alert("Please insert an email")
       }
-      fire_setup.auth().createUserWithEmailAndPassword(email,password);
+      fire_setup.auth().createUserWithEmailAndPassword(email,password).then(function(user){
+        alert("you are signed up!");
+      });
     }
     catch(error){
       alert(error);
@@ -36,7 +44,9 @@ export default class App extends React.Component {
 
     try{
       fire_setup.auth().signInWithEmailAndPassword(email,password).then(function(user){
-        console.log(user);
+        this.props.navigator.push({
+          component : Home
+        });
       });
 
     }
