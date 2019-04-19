@@ -2,14 +2,11 @@ import React,{Component} from 'react';
 import { StyleSheet, Text, View, TextInput} from 'react-native';
 import { Asset, Font } from 'expo';
 import {Container,Item,Form,Label,Input,Content,Header,Button} from "native-base";
-import {
-  StackNavigator,
-  TabNavigator,
-  SwitchNavigator
-} from "react-navigation";
+import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation';
 
 import Home from './Home';
-import fire_setup from './Firebase';
+import loginUser from './controllers/Login'
+import signupUser from './controllers/Signup'
 
 export default class App extends React.Component {
 
@@ -21,41 +18,6 @@ export default class App extends React.Component {
       password : ''
     });
   }
-
-  signupUser = (email,password) => {
-
-    try{
-      if(this.state.password.length < 6){
-        alert("Please enter at least 6 characters");
-        return;
-      }else if (this.state.email.length == 0){
-        alert("Please insert an email")
-      }
-      fire_setup.auth().createUserWithEmailAndPassword(email,password).then(function(user){
-        alert("you are signed up!");
-      });
-    }
-    catch(error){
-      alert(error);
-    }
-  }
-
-  loginUser = (email,password) => {
-
-    try{
-      fire_setup.auth().signInWithEmailAndPassword(email,password).then(function(user){
-        this.props.navigator.push({
-          component : Home
-        });
-      });
-
-    }
-    catch(error){
-      console.log(error);
-    }
-  }
-
-
 
   render() {
     return (
@@ -85,7 +47,7 @@ export default class App extends React.Component {
                 full
                 rounded
                 success
-                onPress={()=> this.loginUser(this.state.email,this.state.password)}
+                onPress={()=> loginUser(this.state.email,this.state.password)}
               >
               <Text style={{color : 'white'}}> Login</Text>
               </Button>
@@ -94,7 +56,7 @@ export default class App extends React.Component {
                 full
                 rounded
                 primary
-                onPress={()=> this.signupUser(this.state.email,this.state.password)}
+                onPress={()=> signupUser(this.state.email,this.state.password)}
               >
               <Text style={{color : 'white'}}> Sign Up</Text>
               </Button>
@@ -103,6 +65,13 @@ export default class App extends React.Component {
     );
   }
 }
+const AppNavigator = createStackNavigator({
+  Home: {
+ screen: Home,
+}
+
+});
+
 
 const styles = StyleSheet.create({
   container: {
