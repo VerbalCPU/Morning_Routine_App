@@ -1,17 +1,16 @@
-import fire_setup from './controllers/Firebase';
+import fire_setup from './Firebase';
 
 
-const loginUser = (email,password) => {
+const loginUser = (email, password) => {
 
-  try{
+  try {
 
-    return fire_setup.auth().signInWithEmailAndPassword(email,password).then(function(user){
-      console.log(user);
+    fire_setup.auth().signInWithEmailAndPassword(email, password)
+      .then(res => {
+        alert(res.user.email);
+      });
 
-    });
-
-  }
-  catch(error){
+  } catch (error) {
     console.log(error);
   }
 }

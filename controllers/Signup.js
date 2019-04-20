@@ -1,19 +1,18 @@
-import fire_setup from './controllers/Firebase';
+import fire_setup from './Firebase';
 
-signupUser = (email,password) => {
+signupUser = (email, password) => {
 
-  try{
-    if(password.length < 6){
+  try {
+    if (password.length < 6) {
       alert("Please enter at least 6 characters");
       return;
-    }else if (email.length == 0){
+    } else if (email.length == 0) {
       alert("Please insert an email")
     }
-     return fire_setup.auth().createUserWithEmailAndPassword(email,password).then(function(user){
+    fire_setup.auth().createUserWithEmailAndPassword(email, password).then(function(user) {
       alert("you are signed up!");
     });
-  }
-  catch(error){
+  } catch (error) {
     console.log(error);
   }
 }

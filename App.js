@@ -65,12 +65,6 @@ export default class App extends React.Component {
     );
   }
 }
-const AppNavigator = createStackNavigator({
-  Home: {
- screen: Home,
-}
-
-});
 
 
 const styles = StyleSheet.create({
