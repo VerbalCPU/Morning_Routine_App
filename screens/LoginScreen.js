@@ -4,7 +4,7 @@ import { Asset, Font } from 'expo';
 import {Container,Item,Form,Label,Input,Content,Header,Button} from "native-base";
 import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation';
 
-import Home from '.screens/Home';
+import Home from './screens/Home';
 import loginUser from './controllers/Login'
 import signupUser from './controllers/Signup'
 
